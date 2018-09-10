@@ -1,70 +1,67 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+
+<html lang="en">
+
 <head>
-    <meta charset='utf-8' />
-    <title>charlotte</title>
-    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <link href="https://api.mapbox.com/mapbox-assembly/v0.21.2/assembly.min.css" rel="stylesheet">
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.css' rel='stylesheet' />
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <meta charset="utf-8">
+
+    <title>Atlanta Urban Geographies</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" />
     <style>
-        body {
-            margin:0;
-            padding:0;
-        }
+        body,
         #map {
-            position:absolute;
-            top:0; bottom:0;
-            width:100%;
-        } 
+            position: absolute;
+            width: 100%;
+            top: 0;
+            bottom: 0;
+            margin: 0;
+            padding: 0;
+            background: rgba(0,0,0,.75);
+        }
     </style>
 </head>
+
 <body>
 
-<div id='map'></div>
+    <div id="map"></div>
 
-<script async defer src="https://api.mapbox.com/mapbox-assembly/v0.21.2/assembly.js"></script>
-<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.js'></script>
-<script src="https://d3js.org/d3.v5.min.js"></script>
-<script>
+    <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+    <script>
+        var options = {
+            center: [35.22, -80.84],
+            zoom: 18,
+            minZoom: 2,
+            maxZoom: 24
+             
+        };
+        var map = L.map('map', options);
+        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+    subdomains: 'abcd',
+    maxZoom: 19
+}).addTo(map);
 
-  mapboxgl.accessToken = 'pk.eyJ1IjoibWFob3JuIiwiYSI6ImNpbnV0enJ4ZTEyNG91YW0zNGF6bTlva2wifQ.7jRtxQoaV2PHlRD7fu6U-g';
-
-  var map = new mapboxgl.Map({
-      container: 'map', // container id
-      style: 'mapbox://styles/mapbox/dark-v9', // stylesheet location
-      center: [-80.8466, 35.2266], // starting position [lng, lat]
-      zoom: 13.4 // starting zoom
-  });
-
-  map.on('load', function () {
-            // request our GEOJSON data
-            d3.json('data/buildings.json')
-                .then(function (geojson) { // when loaded
-                console.log(geojson);
-                    addLayer(geojson);
-                    // addLegend(geojson);
-                    // addInteraction();
-                    // addAboutModalUI();
-                });
+        $.when(
+            // $.getJSON('data/historic-filtered.json'),
+            $.getJSON('data/buildings.json'),
+            $.getJSON('data/parcel.json')
+        ).done(function (buildings, parcel) {
+            drawMap(buildings, parcel);
         });
 
-      function addLayer(geojson) {
-            // add the GeoJSON data as a mapbox gl layer
-            map.addLayer({
-                'id': 'edificios',
-                'type': 'fill',
-                'source': {
-                    'type': 'geojson',
-                    'data': geojson // use the data as the data source
-                },
-                'paint': {
-                    "fill-color": "#ECFF33",
-                    "fill-opacity": .75
-                }
-            });
-        }  
+        function drawMap(buildingsData, parcelData) {
 
+            // L.geoJson(historicData).addTo(map);
+            L.geoJson(buildingsData).addTo(map);
+            L.geoJson(parcelData).addTo(map);
+           
+        }
+    </script>
+</body>
+
+</html>
 </script>
 
 </body>
