@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>charlotte</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <link href="https://api.mapbox.com/mapbox-assembly/v0.21.2/assembly.min.css" rel="stylesheet">
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.css' rel='stylesheet' />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <style>
+        body {
+            margin:0;
+            padding:0;
+        }
+        #map {
+            position:absolute;
+            top:0; bottom:0;
+            width:100%;
+        }
+    </style>
+</head>
+<body>
+
+<div id='map'></div>
+
+<script async defer src="https://api.mapbox.com/mapbox-assembly/v0.21.2/assembly.js"></script>
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.js'></script>
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script>
+
+  mapboxgl.accessToken = 'pk.eyJ1IjoibWFob3JuIiwiYSI6ImNpbnV0enJ4ZTEyNG91YW0zNGF6bTlva2wifQ.7jRtxQoaV2PHlRD7fu6U-g';
+
+  var map = new mapboxgl.Map({
+      container: 'map', // container id
+      style: 'mapbox://styles/mapbox/dark-v9', // stylesheet location
+      center: [-5.98, 44.51], // starting position [lng, lat]
+      zoom: 1.2 // starting zoom
+  });
+
+  map.on('load', function () {
+            // request our GEOJSON data
+            d3.json('data/buildings.json')
+                .then(function (geojson) { // when loaded
+                console.log(geojson);
+                    addLayer(geojson);
+                    // addLegend(geojson);
+                    // addInteraction();
+                    // addAboutModalUI();
+                });
+        });
+
+      function addLayer(geojson) {
+            // add the GeoJSON data as a mapbox gl layer
+            map.addLayer({
+                'id': 'edificios',
+                'type': 'fill',
+                'source': {
+                    'type': 'geojson',
+                    'data': geojson // use the data as the data source
+                },
+                'paint': {
+                    "fill-color": "#ECFF33",
+                    "fill-opacity": .75
+                }
+            });
+        }  
+
+</script>
+
+</body>
+</html>
