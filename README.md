@@ -3,7 +3,7 @@
 
 
 ```
-How to:
+How to build a building footprint map:
 ```
 
 ```
@@ -23,6 +23,9 @@ Edited files can be now use to create an interactive map using Javascript, Carto
 
 ```
 STEP 4
+Final product:
+
+
 ```
 
 ```
