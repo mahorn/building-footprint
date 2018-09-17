@@ -30,12 +30,5 @@ Final product:
 - [Charlotte Map](https://mahorn.github.io/building-footprint/charlotte/)
 - [Newcastle AGOL Map](http://arcg.is/15TK8W)
 
-
 ```
-ogr2ogr -f GeoJSON buildings.json Buildings.shp -s_srs EPSG:2264 -t_srs EPSG:4326 -lco COORDINATE_PRECISION=3
-```
-
-```
-ogr2ogr -f GeoJSON parcel-nodata.json Parcel_NoData.shp -s_srs EPSG:2264 -t_srs EPSG:4326 -lco COORDINATE_PRECISION=3
-```
-
+The ordnance data was difficult to wrangle because of lack of common attribute fields. It would be easier to make a generalized map of the United Kingdom compare to smaller localities. I tried to make a map specific to Newcastle Upon Tyne but I found it difficult to use the ordnance data at that scale. The OS data shows some buildings as large polygons and yet the OSM basemap shows them as more distinct polygons. With more time I would have liked to process the LIDAR data to create a 3D product. 
