@@ -1,9 +1,9 @@
-# BUILDINGS FOOTPRINT MAPS
-# Newcastle Upon Tyne, Great Britain and Charlotte, North Caroline
+# Building Footprint Maps
+# Newcastle Upon Tyne, England & Charlotte, NC
 
 
 ```
-HOW TO CREATE A BUILDING FOOTPRINT MAP
+How to:
 ```
 
 ```
