@@ -25,8 +25,11 @@ Edited files can be now use to create an interactive map using Javascript, Carto
 STEP 4
 Final product:
 ```
+
 [Newcastle](https://mahorn.github.io/building-footprint/newcastle/)
+
 [Charlotte](https://mahorn.github.io/building-footprint/charlotte/)
+
 [Newcastle AGOL Map](http://arcg.is/15TK8W)
 
 
