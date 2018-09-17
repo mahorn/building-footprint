@@ -1,5 +1,5 @@
 # Building Footprint Maps
-# Newcastle Upon Tyne, England & Charlotte, NC
+## Newcastle Upon Tyne, England & Charlotte, NC
 
 
 ```
@@ -24,10 +24,11 @@ Edited files can be now use to create an interactive map using Javascript, Carto
 ```
 STEP 4
 Final product:
+```
 [Newcastle](https://mahorn.github.io/building-footprint/newcastle/)
 [Charlotte](https://mahorn.github.io/building-footprint/charlotte/)
 [Newcastle AGOL Map](http://arcg.is/15TK8W)
-```
+
 
 ```
 ogr2ogr -f GeoJSON buildings.json Buildings.shp -s_srs EPSG:2264 -t_srs EPSG:4326 -lco COORDINATE_PRECISION=3
